@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>サポート｜ぽたりん</title>
+<meta name="description" content="自転車アプリ「ぽたりん」のサポートページです。">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--green:#1F7A4D;--green-deep:#165C3A;--ink:#16302A;--ink-soft:#4B5F57;--mist:#EEF6F1}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);font-family:'Noto Sans JP',sans-serif;font-size:16px;line-height:1.9;background:#FFFFFF}
+a{color:var(--green)}a:hover{color:var(--green-deep)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+.top{background:#5DB7EE}
+.top .wrap{display:flex;align-items:center;min-height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:20px}
+.brand img{width:36px;height:36px}
+.wrap{max-width:760px;margin:0 auto;padding:0 24px}
+main{padding:56px 0 96px}
+h1{font-family:'Zen Maru Gothic',sans-serif;font-size:clamp(1.8rem,5vw,2.4rem);line-height:1.35;margin:0 0 12px}
+h2{font-family:'Zen Maru Gothic',sans-serif;font-size:1.3rem;line-height:1.4;margin:48px 0 12px}
+p{margin:0 0 12px}
+.contact{background:var(--mist);border-radius:16px;padding:22px 24px;margin-top:24px}
+details{border-top:1px solid #D6E2DB;padding:16px 0}
+details:last-of-type{border-bottom:1px solid #D6E2DB}
+summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;gap:16px;min-height:44px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:'＋';color:var(--green)}
+details[open] summary::after{content:'−'}
+details p{margin-top:8px;color:var(--ink-soft)}
+footer{background:var(--ink);color:#C9D6CF;padding:32px 0;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center}
+footer a{color:#FFFFFF;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer a:hover{text-decoration:underline;color:#FFFFFF}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="brand" href="./"><img src="icon.svg" alt="" width="36" height="36">ぽたりん</a></div></header>
+
+<main>
+<div class="wrap">
+<h1>サポート</h1>
+<p>困ったときは、まずこちらをご覧ください。</p>
+
+<h2>記録について</h2>
+<details><summary>画面を消すと記録が止まってしまう</summary><p>iPhoneの「設定」→「ぽたりん」→「位置情報」を「常に」にしてください。「このAppの使用中のみ」だと、画面を消したときに記録が止まることがあります。</p></details>
+<details><summary>ほかのアプリの記録が表示されない</summary><p>「設定」→「ヘルスケア」→「データアクセスとデバイス」→「ぽたりん」で、ワークアウトの読み取りがオンになっているか確認してください。</p></details>
+<details><summary>同じライドが2回表示される</summary><p>複数のアプリが同じ走行をヘルスケアに書き込んでいると、重なることがあります。時間が重なる記録は自動でまとめていますが、残ってしまった場合はライドの詳細画面から削除できます。</p></details>
+
+<h2>推定パワーについて</h2>
+<details><summary>推定パワーが実際と違う気がする</summary><p>推定パワーは、GPS・地形・天気予報の風・プロフィールから計算した目安です。集団で走ったときや、街中の局所的な風は反映できません。プロフィールの体重・自転車の重さ・乗車姿勢を見直すと、精度が上がることがあります。</p></details>
+<details><summary>E-bikeで推定パワーが出ない</summary><p>電動アシストの補助分を見分けられないため、E-bikeでは推定パワーを表示していません。</p></details>
+
+<div class="contact">
+<h2 style="margin-top:0">お問い合わせ</h2>
+<p>解決しない場合は、下記までご連絡ください。お使いのiPhoneの機種とiOSのバージョンを書き添えていただけると助かります。</p>
+<p style="margin:0">[お問い合わせ用メールアドレス]</p>
+</div>
+</div>
+</main>
+
+<footer><div class="wrap"><span>© 2026 ぽたりん</span><nav aria-label="フッター" style="display:flex;gap:24px"><a href="./">トップ</a><a href="privacy.html">プライバシーポリシー</a></nav></div></footer>
+</body>
+</html>
