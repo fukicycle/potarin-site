@@ -3,21 +3,47 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ぽたりん｜のんびり走りたい人の自転車アプリ</title>
-<meta name="description" content="ぽたりんは、のんびり走りたい人のためのiPhone向け自転車アプリ。気持ちよく走れる日を教えてくれて、走った道を地図に残します。">
-<meta property="og:title" content="ぽたりん｜のんびり走りたい人の自転車アプリ">
-<meta property="og:description" content="週末、ちょっとそこまで。気持ちよく走れる日を教えてくれる自転車アプリです。">
+<title>ぽたりん｜のんびり走る人のための自転車アプリ（iPhone）</title>
+<meta name="description" content="ぽたりんは、自転車初心者やのんびり走りたい人のためのiPhoneアプリ。週末の天気と風から走りやすい日を教えてくれて、GPSで走った道を地図に記録。パワーメーターなしで風の影響もわかります。">
+<link rel="canonical" href="https://potarin-site.pages.dev/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="ぽたりん">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://potarin-site.pages.dev/">
+<meta property="og:title" content="ぽたりん｜のんびり走る人のための自転車アプリ">
+<meta property="og:description" content="週末、ちょっとそこまで。走りやすい日を教えてくれて、走った道を地図に残すiPhoneアプリです。">
+<meta property="og:image" content="https://potarin-site.pages.dev/ogp.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="青空と緑の山の前を白い自転車が走る、ぽたりんのイメージ">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#5DB7EE">
-<link rel="icon" href="icon.svg" type="image/svg+xml">
+<!-- App Store公開後に有効化：<meta name="apple-itunes-app" content="app-id=[App ID]"> -->
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "ぽたりん",
+  "alternateName": "Potarin",
+  "description": "自転車初心者やのんびり走りたい人のためのiPhoneアプリ。走りやすい日のお知らせ、GPSでの走行記録と地図、風の影響と推定パワーの表示ができます。",
+  "operatingSystem": "iOS",
+  "applicationCategory": "SportsApplication",
+  "inLanguage": "ja",
+  "url": "https://potarin-site.pages.dev/",
+  "image": "https://potarin-site.pages.dev/ogp.png",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
 <style>
 :root{
   --sky:#5DB7EE; --sky-pale:#8FCFF4; --mountain:#8CCBA6; --hill:#3E9B5E;
   --green:#1F7A4D; --green-deep:#165C3A; --ink:#16302A; --ink-soft:#4B5F57;
-  --mist:#EEF6F1; --white:#FFFFFF; --wind:#D9692E; --tail:#2F6FD0;
+  --mist:#EEF6F1; --white:#FFFFFF;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -28,84 +54,91 @@ p{margin:0}
 a{color:var(--green)}
 a:hover{color:var(--green-deep)}
 :focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* phone frame around the real mock screens */
+.phone{--s:.62;position:relative;flex-shrink:0;width:calc(390px * var(--s));height:calc(844px * var(--s));border-radius:calc(58px * var(--s));overflow:hidden;background:#F3F5F4;box-shadow:0 0 0 9px var(--ink),0 36px 60px -24px rgba(22,48,42,.55)}
+.phone .screen{width:390px;height:844px;overflow:hidden;transform:scale(var(--s));transform-origin:0 0}
+@media (max-width:520px){.phone{--s:.56}}
 
 /* hero */
-.hero{position:relative;background:var(--sky);overflow:hidden;min-height:min(92vh,780px);display:flex;flex-direction:column}
-.hero__band{position:absolute;left:0;right:0;top:42%;height:22%;background:var(--sky-pale)}
-.hero__nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.hero{position:relative;background:var(--sky);overflow:hidden}
+.hero__band{position:absolute;left:0;right:0;top:38%;height:24%;background:var(--sky-pale)}
+.cloud{position:absolute;fill:var(--white)}
+.cloud--a{width:170px;top:20%;left:44%}
+.cloud--b{width:100px;top:8%;right:6%;opacity:.85}
+.hero__nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 0}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-family:'Zen Maru Gothic',sans-serif;font-weight:700;font-size:20px}
 .brand img{width:36px;height:36px}
-.hero__nav a.navlink{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;padding:10px 4px}
-.hero__nav a.navlink:hover{text-decoration:underline}
-.hero__copy{position:relative;padding:48px 0 0;max-width:34rem}
-.hero h1{font-size:clamp(2.4rem,7vw,4.2rem);letter-spacing:.02em}
-.hero__lead{margin-top:20px;font-size:clamp(1rem,2.2vw,1.15rem);color:var(--ink)}
-.hero__actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.navlink{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;padding:10px 4px}
+.navlink:hover{text-decoration:underline;color:var(--ink)}
+.hero__grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end;padding:24px 0 44px}
+.hero__copy{align-self:center;padding-bottom:120px}
+.hero h1{font-size:clamp(2.4rem,6.4vw,4.2rem);letter-spacing:.02em}
+.hero__lead{margin-top:20px;font-size:clamp(1rem,2.1vw,1.15rem);max-width:30rem}
+.hero__actions{margin-top:28px;display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:999px;background:var(--green);color:var(--white);font-weight:700;text-decoration:none;font-size:16px}
 .btn:hover{background:var(--green-deep);color:var(--white)}
-.hero__note{font-size:14px;color:var(--ink)}
-.cloud{position:absolute;fill:var(--white)}
-.cloud--a{width:180px;top:18%;right:8%}
-.cloud--b{width:110px;top:9%;right:34%;opacity:.85}
-.scene{position:relative;margin-top:auto;display:block;width:100%;height:clamp(220px,34vw,340px)}
-.bike{transform:translateX(0)}
+.hero__note{font-size:14px}
+.hero__phone{display:flex;justify-content:center}
+.scene{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(190px,24vw,280px)}
 @media (prefers-reduced-motion: no-preference){
-  .bike{animation:roll 2.2s cubic-bezier(.22,.8,.32,1) .3s both}
-  @keyframes roll{from{transform:translateX(-1100px)}to{transform:translateX(0)}}
+  .bike{animation:roll 2.4s cubic-bezier(.22,.8,.32,1) .3s both}
+  @keyframes roll{from{transform:translateX(-700px)}to{transform:translateX(0)}}
 }
-@media (max-width:640px){.cloud--a{width:120px;top:auto;bottom:46%;right:6%}.cloud--b{display:none}}
+@media (max-width:860px){
+  .hero__grid{grid-template-columns:1fr;gap:36px}
+  .hero__copy{padding-bottom:0}
+  .cloud--a{display:none}
+}
 
-/* features */
-section{padding:96px 0}
+/* sections */
+section{padding:104px 0}
 .section-title{font-size:clamp(1.7rem,4vw,2.4rem)}
-.intro{margin-top:16px;max-width:36rem;color:var(--ink-soft)}
-.feature{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;margin-top:72px}
-.feature:nth-of-type(even) .feature__visual{order:-1}
-.feature h3{font-size:clamp(1.4rem,3vw,1.8rem)}
-.feature p{margin-top:14px;color:var(--ink-soft);max-width:28rem}
-.feature__visual{background:var(--mist);border-radius:28px;padding:36px;display:flex;justify-content:center}
-@media (max-width:820px){
-  .feature{grid-template-columns:1fr;gap:24px;margin-top:56px}
-  .feature:nth-of-type(even) .feature__visual{order:0}
-  .feature__visual{padding:24px}
+.intro{margin-top:16px;max-width:38rem;color:var(--ink-soft)}
+.feature{display:grid;grid-template-columns:1fr auto;gap:72px;align-items:center;margin-top:88px}
+.feature--flip{grid-template-columns:auto 1fr}
+.feature--flip .feature__media{order:-1}
+.feature h3{font-size:clamp(1.4rem,3vw,1.85rem)}
+.feature p{margin-top:16px;color:var(--ink-soft);max-width:30rem}
+.feature ul{margin:16px 0 0;padding-left:1.2em;color:var(--ink-soft)}
+.feature li{margin-bottom:4px}
+.feature__media{display:flex;justify-content:center;padding:36px 48px;background:var(--mist);border-radius:36px}
+@media (max-width:860px){
+  .feature,.feature--flip{grid-template-columns:1fr;gap:28px;margin-top:64px}
+  .feature--flip .feature__media{order:0}
+  .feature__media{padding:32px 16px}
 }
-
-/* fragments of the app */
-.frag{width:100%;max-width:340px;background:var(--white);border-radius:20px;padding:18px 20px;color:var(--ink);font-size:14px;line-height:1.6}
-.bubble{position:relative;background:var(--white);border-radius:18px 18px 18px 6px;padding:14px 16px;font-size:15px;max-width:300px}
-.weather{display:flex;gap:10px;margin-top:14px}
-.weather div{flex:1;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.5}
-.weather .sun{background:#E4F3EA;color:var(--green-deep)}
-.weather .rain{background:#FFF1E6;color:#7A3A0E}
-.weather b{display:block;font-size:15px}
-.bar{height:10px;border-radius:999px;overflow:hidden;margin:6px 0 12px}
-.bar span{display:block;height:100%}
-.row{display:flex;justify-content:space-between;gap:12px}
-.months{display:flex;gap:8px;margin-top:12px}
-.months span{flex:1;aspect-ratio:1;border-radius:10px;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.months-card{width:300px;max-width:100%;background:var(--white);border-radius:24px;padding:24px;align-self:center}
+.months-card .big{font-family:'Zen Maru Gothic',sans-serif;font-size:42px;font-weight:700;line-height:1.2}
+.months{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}
+.months span{aspect-ratio:1;border-radius:10px;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
 .months span.off{background:#E3E8E5;color:var(--ink-soft)}
-.big{font-family:'Zen Maru Gothic',sans-serif;font-size:40px;font-weight:700;line-height:1.2}
 
-/* goal strip */
+/* goal */
 .goal{background:var(--green);color:var(--white)}
-.goal .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
-.goal p{margin-top:14px;color:#DDEFE4;max-width:30rem}
-.goal__steps{display:flex;align-items:flex-end;gap:10px;height:160px}
-.goal__steps span{flex:1;background:#6FD39C;border-radius:10px 10px 4px 4px;position:relative}
-.goal__steps em{position:absolute;top:-26px;left:0;right:0;text-align:center;font-style:normal;font-size:13px;color:#DDEFE4}
-@media (max-width:820px){.goal .wrap{grid-template-columns:1fr}}
+.goal .wrap{display:grid;grid-template-columns:1fr auto;gap:72px;align-items:center}
+.goal p{margin-top:16px;color:#DDEFE4;max-width:30rem}
+.goal .phone{box-shadow:0 0 0 9px #0E2A1B,0 36px 60px -24px rgba(0,0,0,.45)}
+@media (max-width:860px){.goal .wrap{grid-template-columns:1fr;gap:48px}.goal__phone{display:flex;justify-content:center}}
+
+/* beginners */
+.beginners .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin-top:48px}
+.beginners h3{font-size:1.2rem}
+.beginners .cols p{margin-top:10px;color:var(--ink-soft)}
+@media (max-width:860px){.beginners .cols{grid-template-columns:1fr;gap:32px}}
 
 /* author */
-.author blockquote{margin:0;max-width:40rem;font-family:'Zen Maru Gothic',sans-serif;font-weight:500;font-size:clamp(1.15rem,2.6vw,1.45rem);line-height:2}
+.author{background:var(--mist)}
+.author blockquote{margin:0;max-width:42rem;font-family:'Zen Maru Gothic',sans-serif;font-weight:500;font-size:clamp(1.15rem,2.6vw,1.45rem);line-height:2}
 .author cite{display:block;margin-top:20px;font-style:normal;color:var(--ink-soft);font-size:15px}
 
 /* beta + faq */
-.beta{background:var(--mist)}
-.beta__box{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center}
-@media (max-width:720px){.beta__box{grid-template-columns:1fr}}
-.faq details{border-top:1px solid #D6E2DB;padding:18px 0}
-.faq details:last-child{border-bottom:1px solid #D6E2DB}
+.beta__box{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;border:2px solid var(--green);border-radius:28px;padding:40px}
+@media (max-width:720px){.beta__box{grid-template-columns:1fr;padding:28px}}
+.faq{padding-top:0}
+.faq details{border-top:1px solid #D6E2DB;padding:16px 0}
+.faq details:last-of-type{border-bottom:1px solid #D6E2DB}
 .faq summary{cursor:pointer;font-weight:700;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:16px;min-height:44px;align-items:center}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:'＋';color:var(--green);font-weight:700}
@@ -115,8 +148,8 @@ section{padding:96px 0}
 footer{background:var(--ink);color:#C9D6CF;padding:40px 0;font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
 footer nav{display:flex;gap:24px;flex-wrap:wrap}
-footer a{color:#FFFFFF;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
-footer a:hover{text-decoration:underline;color:#FFFFFF}
+footer a{color:var(--white);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+footer a:hover{text-decoration:underline;color:var(--white)}
 </style>
 </head>
 <body>
@@ -126,96 +159,271 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
   <svg class="cloud cloud--a" viewBox="0 0 120 50" aria-hidden="true"><circle cx="30" cy="30" r="18"/><circle cx="56" cy="22" r="22"/><circle cx="84" cy="30" r="16"/><rect x="14" y="30" width="88" height="18" rx="9"/></svg>
   <svg class="cloud cloud--b" viewBox="0 0 120 50" aria-hidden="true"><circle cx="30" cy="30" r="18"/><circle cx="56" cy="22" r="22"/><circle cx="84" cy="30" r="16"/><rect x="14" y="30" width="88" height="18" rx="9"/></svg>
 
-  <div class="wrap" style="position:relative;width:100%">
+  <svg class="scene" viewBox="0 0 1440 280" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 130 L220 50 L400 110 L690 0 L960 100 L1170 40 L1440 120 V280 H0 Z" fill="#8CCBA6"/>
+    <path d="M0 210 C300 160 520 200 760 188 C1000 176 1220 196 1440 170 V280 H0 Z" fill="#3E9B5E"/>
+    <rect x="0" y="236" width="1440" height="44" fill="#1F7A4D"/>
+    <g class="bike">
+      <g fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="300" cy="206" r="30"/><circle cx="392" cy="206" r="30"/>
+        <path d="M300 206 L340 206 L326 164 Z"/><path d="M326 164 L376 164 L340 206"/><path d="M376 164 L392 206"/>
+        <path d="M316 156 L338 156"/><path d="M370 152 C376 148 384 148 388 154"/>
+      </g>
+      <circle cx="340" cy="206" r="7" fill="#FFFFFF"/>
+      <g stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.8"><path d="M240 184 L256 184"/><path d="M232 200 L252 200"/></g>
+    </g>
+  </svg>
+
+  <div class="wrap">
     <nav class="hero__nav" aria-label="サイト">
-      <a class="brand" href="./"><img src="icon.svg" alt="" width="36" height="36">ぽたりん</a>
+      <a class="brand" href="/"><img src="/icon.svg" alt="" width="36" height="36">ぽたりん</a>
       <a class="navlink" href="#beta">ベータ版について</a>
     </nav>
-    <div class="hero__copy">
-      <h1>週末、<br>ちょっとそこまで。</h1>
-      <p class="hero__lead">ぽたりんは、のんびり走りたい人のための自転車アプリ。気持ちよく走れる日を教えてくれて、走った道を地図に残します。</p>
-      <div class="hero__actions">
-        <a class="btn" href="#beta">ベータ版に参加する</a>
-        <span class="hero__note">iPhone向け・App Storeで近日公開</span>
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <h1>週末、<br>ちょっとそこまで。</h1>
+        <p class="hero__lead">ぽたりんは、のんびり走りたい人のための自転車アプリ。気持ちよく走れる日を教えてくれて、走った道を地図に残します。</p>
+        <div class="hero__actions">
+          <a class="btn" href="#beta">ベータ版に参加する</a>
+          <span class="hero__note">iPhone向け・App Storeで近日公開</span>
+        </div>
+      </div>
+      <div class="hero__phone">
+        <div class="phone" role="img" aria-label="ぽたりんのホーム画面。今週末は土曜が気持ちよさそうと知らせている">
+          <div class="screen" inert aria-hidden="true"><div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F3F5F4; font-family: 'Noto Sans JP', sans-serif; color: #15201B; box-sizing: border-box">
+<div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: flex-end; gap: 12px">
+<svg width="64" height="64" viewBox="0 0 240 240" aria-hidden="true" style="flex-shrink: 0"><circle cx="120" cy="120" r="120" fill="#DCEFFF"/><rect x="62" y="168" width="116" height="18" rx="9" fill="#E0A100"/><path d="M70 168 C70 100 92 70 120 70 C148 70 170 100 170 168 Z" fill="#FFC83D"/><circle cx="120" cy="60" r="12" fill="#FFC83D"/><circle cx="102" cy="126" r="9" fill="#5A3A00"/><circle cx="138" cy="126" r="9" fill="#5A3A00"/><path d="M110 144 C114 152 126 152 130 144" fill="none" stroke="#5A3A00" stroke-width="7" stroke-linecap="round"/><circle cx="88" cy="144" r="9" fill="#FF8A8A" opacity="0.55"/><circle cx="152" cy="144" r="9" fill="#FF8A8A" opacity="0.55"/></svg>
+<div style="position: relative; flex-grow: 1; padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: #FFFFFF; font-size: 15px; line-height: 1.6">ちりりん！今週末は<b>土曜</b>が気持ちよさそうだよ。</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; gap: 12px">
+<svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#C77700" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 16px; font-weight: 700">10月3日（土）晴れ 23°</div>
+<div style="font-size: 13px; color: #56635C">風よわい・午前がとくにおすすめ</div>
+</div>
+</div>
+<div style="font-size: 13px; color: #2E3A34">こんなのはどう？</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; border-radius: 12px; background: #F3F5F4">
+<span style="font-size: 14px; flex-grow: 1">前に走った<b>川沿いのコース</b></span>
+<span style="font-size: 12px; color: #56635C">28km・のんびり</span>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 8px 12px; border-radius: 12px; background: #F3F5F4">
+<span style="font-size: 14px; flex-grow: 1">気が向くまま、<b>ちょっとそこまで</b></span>
+<span style="font-size: 12px; color: #56635C">距離は自由</span>
+</div>
+</div>
+<span style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: 14px; background: #1F7A4D; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>走りに行く</span>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 12px; color: #56635C">10月のライド</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">0<span style="font-size: 12px">回</span></div>
+<div style="font-size: 11px; color: #56635C">月2〜3回が目安</div>
+</div>
+<div style="background: #FDEBDD; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 12px; color: #8A3B0E">つづいてる</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700; color: #8A3B0E">5<span style="font-size: 12px">か月</span></div>
+<div style="font-size: 11px; color: #8A3B0E">月1回乗ればOK</div>
+</div>
+</div>
+
+<span style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #15201B">
+<svg width="64" height="48" viewBox="0 0 64 48" aria-hidden="true" style="flex-shrink: 0; border-radius: 8px"><rect width="64" height="48" fill="#E6ECE5"/><path d="M0 38 C20 34 30 40 50 32 S64 28 64 28" fill="none" stroke="#C7D8E8" stroke-width="5"/><path d="M8 40 C14 28 20 20 32 14 S52 10 56 18 S44 34 8 40" fill="none" stroke="#1F7A4D" stroke-width="2.5"/></svg>
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 14px; font-weight: 700">9月のおもいで</div>
+<div style="font-size: 12px; color: #56635C">3回・合計96km・追い風に助けられた日も</div>
+</div>
+<span style="color: #56635C; font-size: 18px">›</span>
+</span>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #DDE2DF; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-bottom: 22px; box-sizing: border-box">
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #1F7A4D; font-size: 11px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>ホーム</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>予定</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg>きろく</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>相談</span>
+</div>
+</div></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <svg class="scene" viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-    <path d="M0 170 L220 90 L400 150 L690 40 L960 140 L1170 80 L1440 160 V320 H0 Z" fill="#8CCBA6"/>
-    <path d="M0 250 C300 200 520 240 760 228 C1000 216 1220 236 1440 210 V320 H0 Z" fill="#3E9B5E"/>
-    <rect x="0" y="272" width="1440" height="48" fill="#1F7A4D"/>
-    <g class="bike">
-      <g fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="656" cy="230" r="42"/>
-        <circle cx="785" cy="230" r="42"/>
-        <path d="M656 230 L712 230 L692 171 Z"/>
-        <path d="M692 171 L762 171 L712 230"/>
-        <path d="M762 171 L785 230"/>
-        <path d="M678 160 L709 160"/>
-        <path d="M754 154 C762 149 773 149 779 157"/>
-      </g>
-      <circle cx="712" cy="230" r="10" fill="#FFFFFF"/>
-      <g stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" opacity="0.8"><path d="M566 200 L586 200"/><path d="M556 222 L582 222"/></g>
-    </g>
-  </svg>
 </header>
 
 <main>
   <section aria-labelledby="what">
     <div class="wrap">
       <h2 id="what" class="section-title">速さより、気持ちよさ。</h2>
-      <p class="intro">トレーニングのメニューも、毎日のノルマもありません。ぽたりんは、自転車に乗るきっかけをそっと渡してくれる相棒です。</p>
+      <p class="intro">トレーニングのメニューも、毎日のノルマもありません。天気のいい週末に「ちょっと走ってこようかな」と思える、そんなきっかけをくれる自転車アプリです。</p>
 
       <div class="feature">
         <div>
-          <h3>気持ちいい日を、教えてくれる</h3>
-          <p>週末の天気と風を見て、走りやすい日をお知らせします。雨の予報が出たら、別の日に移すのもワンタップ。</p>
+          <h3>ボタンを押して、走るだけ</h3>
+          <p>iPhoneをハンドルに付けて、記録をはじめるだけ。距離や時間、今受けている風まで、大きな文字で表示します。画面を消しても記録は続きます。</p>
+          <ul>
+            <li>センサーやサイクルコンピューターは不要</li>
+            <li>記録はヘルスケアにも保存</li>
+            <li>Apple Watchやほかのアプリの記録も取り込める</li>
+          </ul>
         </div>
-        <div class="feature__visual" aria-hidden="true">
-          <div style="width:100%;max-width:340px">
-            <div class="bubble">ちりりん！今週末は<b>土曜</b>が気持ちよさそうだよ。</div>
-            <div class="weather">
-              <div class="sun"><b>土 晴れ 23°</b>風よわい</div>
-              <div class="rain"><b>日 雨のち曇り</b>降水60%</div>
-            </div>
+        <div class="feature__media">
+          <div class="phone" role="img" aria-label="記録中の画面。地図、走行距離27.4km、速度、推定パワー、向かい風の強さが表示されている">
+            <div class="screen" inert aria-hidden="true"><div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F3F5F4; font-family: 'Noto Sans JP', sans-serif; color: #15201B; box-sizing: border-box; display: flex; flex-direction: column">
+<div style="position: relative; height: 330px; background: #E6ECE5; flex-shrink: 0">
+<svg width="390" height="330" viewBox="0 0 390 330" style="display: block">
+<rect x="0" y="0" width="390" height="330" fill="#E6ECE5"/>
+<path d="M0 250 C80 230 140 260 230 220 S360 180 390 190" fill="none" stroke="#C7D8E8" stroke-width="22"/>
+<path d="M-10 90 L400 140" stroke="#FFFFFF" stroke-width="10"/>
+<path d="M120 -10 L160 340" stroke="#FFFFFF" stroke-width="8"/>
+<path d="M300 -10 L270 340" stroke="#FFFFFF" stroke-width="6"/>
+<rect x="20" y="20" width="70" height="50" rx="6" fill="#D5E3CF"/>
+<rect x="200" y="20" width="60" height="70" rx="6" fill="#D5E3CF"/>
+<path d="M60 300 C90 260 110 200 140 160 S210 110 250 120 S300 150 285 190" fill="none" stroke="#1F7A4D" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="285" cy="190" r="14" fill="#1F7A4D" opacity="0.2"/>
+<circle cx="285" cy="190" r="8" fill="#1F7A4D" stroke="#FFFFFF" stroke-width="3"/>
+</svg>
+<div style="position: absolute; top: 56px; left: 16px; display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: #FFFFFF; font-size: 13px; font-weight: 700">
+<span style="width: 10px; height: 10px; border-radius: 999px; background: #D23C2E"></span>
+記録中・メインライド 50km
+</div>
+<div style="position: absolute; top: 56px; right: 16px; display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: #FFF4E8; color: #7A3A0E; font-size: 13px; font-weight: 700">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10a3 3 0 1 0-3-3"/><path d="M3 12h15a3 3 0 1 1-3 3"/><path d="M3 16h6"/></svg>
+向かい風 3.8m/s
+</div>
+</div>
+
+<div style="padding: 20px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1">
+<div style="display: flex; flex-direction: column; align-items: center; gap: 0">
+<div style="font-size: 13px; color: #56635C">距離</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 64px; font-weight: 700; line-height: 1.1">27.4<span style="font-size: 22px; margin-left: 6px">km</span></div>
+<div style="width: 100%; height: 8px; border-radius: 999px; background: #E3E8E5; overflow: hidden; margin-top: 8px">
+<div style="width: 55%; height: 100%; background: #1F7A4D"></div>
+</div>
+<div style="font-size: 12px; color: #56635C; margin-top: 6px">目標まであと22.6km</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; align-items: center">
+<div style="font-size: 11px; color: #56635C">経過時間</div>
+<div style="font-size: 22px; font-weight: 700">1:12:05</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; align-items: center">
+<div style="font-size: 11px; color: #56635C">速度</div>
+<div style="font-size: 22px; font-weight: 700">24.1<span style="font-size: 11px">km/h</span></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px; display: flex; flex-direction: column; gap: 2px; align-items: center">
+<div style="font-size: 11px; color: #56635C">推定パワー</div>
+<div style="font-size: 22px; font-weight: 700">135<span style="font-size: 11px">W</span></div>
+</div>
+</div>
+<div style="font-size: 12px; color: #56635C; text-align: center">推定パワーは直近1分の平均です。画面を消しても記録は続きます。</div>
+<div style="margin-top: auto; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" style="min-height: 60px; border-radius: 16px; border: 1px solid #C9D1CC; background: #FFFFFF; font-family: inherit; font-size: 16px; font-weight: 700; color: #15201B; cursor: pointer">一時停止</button>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60px; border-radius: 16px; background: #15201B; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700">終了<span style="font-size: 11px; font-weight: 400; color: #B9C6BF">長押しで終了</span></span>
+</div>
+</div>
+</div></div>
           </div>
         </div>
       </div>
 
-      <div class="feature">
-        <div>
-          <h3>走るだけで、地図に残る</h3>
-          <p>記録ボタンを押して走るだけ。走った道は地図に残り、月ごとの「おもいで」になります。Apple Watchやほかのアプリの記録も、ヘルスケアから取り込めます。</p>
-        </div>
-        <div class="feature__visual" aria-hidden="true">
-          <div class="frag">
-            <svg viewBox="0 0 300 150" style="display:block;width:100%;height:auto;border-radius:12px">
-              <rect width="300" height="150" fill="#E6ECE5"/>
-              <path d="M0 120 C90 104 140 128 220 96 S300 80 300 80" fill="none" stroke="#C7D8E8" stroke-width="16"/>
-              <path d="M-5 46 L305 70" stroke="#FFFFFF" stroke-width="7"/>
-              <path d="M110 -5 L130 155" stroke="#FFFFFF" stroke-width="6"/>
-              <path d="M40 130 C60 96 84 66 130 46 S236 24 252 52 S210 112 40 130" fill="none" stroke="#1F7A4D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="40" cy="130" r="7" fill="#16302A" stroke="#FFFFFF" stroke-width="3"/>
-            </svg>
-            <div class="row" style="margin-top:12px"><b>9月のおもいで</b><span>3回・96km</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="feature">
+      <div class="feature feature--flip">
         <div>
           <h3>風に勝った日が、わかる</h3>
-          <p>GPSと地形、その日の風から、どれだけがんばったかを推定します。パワーメーターがなくても、「向かい風の中、よく走った」が数字でわかります。</p>
+          <p>走った道は地図に残り、向かい風だった区間と追い風だった区間で色分けされます。GPSと地形、その日の風から、パワーメーターなしでどれだけがんばったかを推定。「行きは向かい風で18%多く体力を使った」が、数字でわかります。</p>
         </div>
-        <div class="feature__visual" aria-hidden="true">
-          <div class="frag">
-            <b style="font-size:15px">風の影響</b>
-            <div class="row" style="margin-top:10px"><span>行き（向かい風）</span><b style="color:#9A4A12">+18%</b></div>
-            <div class="bar" style="background:#FDE7DA"><span style="width:68%;background:var(--wind)"></span></div>
-            <div class="row"><span>帰り（追い風）</span><b style="color:#1D4F80">−11%</b></div>
-            <div class="bar" style="background:#DCE8F7"><span style="width:42%;background:var(--tail)"></span></div>
-            <div style="color:var(--ink-soft);font-size:13px">消費エネルギーは、おにぎり6個分。</div>
+        <div class="feature__media">
+          <div class="phone" role="img" aria-label="ライドの詳細画面。地図に向かい風と追い風の区間が色分けされ、距離や推定パワーが表示されている">
+            <div class="screen" inert aria-hidden="true"><div style="position: relative; width: 390px; height: 1180px; overflow: hidden; background: #F3F5F4; font-family: 'Noto Sans JP', sans-serif; color: #15201B; box-sizing: border-box">
+<div style="padding: 56px 20px 32px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; gap: 8px">
+<span style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-left: -12px; color: #15201B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></span>
+<div style="display: flex; flex-direction: column">
+<div style="font-size: 13px; color: #56635C">10月4日（日）・予備日に振替</div>
+<div style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">日曜のメインライド</div>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; overflow: hidden">
+<svg width="390" height="250" viewBox="0 0 390 250" style="display: block; width: 100%; height: auto">
+<rect x="0" y="0" width="390" height="250" fill="#E6ECE5"/>
+<path d="M0 205 C90 185 150 215 240 180 S360 150 390 160" fill="none" stroke="#C7D8E8" stroke-width="20"/>
+<path d="M-10 70 L400 110" stroke="#FFFFFF" stroke-width="9"/>
+<path d="M110 -10 L150 260" stroke="#FFFFFF" stroke-width="7"/>
+<path d="M290 -10 L265 260" stroke="#FFFFFF" stroke-width="6"/>
+<rect x="20" y="20" width="60" height="40" rx="6" fill="#D5E3CF"/>
+<rect x="190" y="130" width="50" height="40" rx="6" fill="#D5E3CF"/>
+<path d="M60 220 C80 170 110 120 160 80 S270 40 320 70" fill="none" stroke="#E2702B" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M320 70 C350 100 330 150 290 170 S150 210 60 220" fill="none" stroke="#2563EB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 0"/>
+<circle cx="60" cy="220" r="8" fill="#15201B" stroke="#FFFFFF" stroke-width="3"/>
+<path d="M340 22 L322 40 M340 22 L340 34 M340 22 L328 22" stroke="#15201B" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+<text x="300" y="30" font-size="11" font-family="Noto Sans JP, sans-serif" fill="#15201B">北西の風</text>
+</svg>
+<div style="display: flex; gap: 16px; padding: 10px 16px; font-size: 12px; color: #2E3A34">
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 4px; border-radius: 2px; background: #E2702B"></span>向かい風</span>
+<span style="display: flex; align-items: center; gap: 6px"><span style="width: 16px; height: 4px; border-radius: 2px; background: #2563EB"></span>追い風</span>
+<span style="margin-left: auto; color: #56635C">表示：風 ／ 速度 ／ 標高</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 11px; color: #56635C">距離</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">52.3<span style="font-size: 12px">km</span></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 11px; color: #56635C">走行時間</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">2:18</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 11px; color: #56635C">平均速度</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">22.7<span style="font-size: 12px">km/h</span></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 11px; color: #56635C">獲得標高</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">410<span style="font-size: 12px">m</span></div>
+</div>
+</div>
+
+<div style="background: #15201B; color: #FFFFFF; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-size: 13px; font-weight: 700; color: #6FD39C">推定パワー</div>
+<div style="font-size: 11px; color: #B9C6BF">GPS・地形・風から推定</div>
+</div>
+<div style="display: flex; align-items: baseline; gap: 16px">
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 40px; font-weight: 700">128<span style="font-size: 16px; margin-left: 4px">W</span></div>
+<div style="font-size: 14px; color: #DDE5E0">体重あたり 2.0 W/kg</div>
+</div>
+<div style="font-size: 13px; line-height: 1.7; color: #DDE5E0">消費エネルギーは約1,060kcal。おにぎりなら6個分です。</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="margin: 0; font-size: 15px; font-weight: 700">風の影響</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; font-size: 13px"><span>往路（向かい風 4m/s）</span><b style="color: #9A4A12">+18% 多く体力を使用</b></div>
+<div style="height: 8px; border-radius: 999px; background: #FDEBDD; overflow: hidden"><div style="width: 68%; height: 100%; background: #E2702B"></div></div>
+<div style="display: flex; justify-content: space-between; font-size: 13px; margin-top: 4px"><span>復路（追い風）</span><b style="color: #1D4F80">−11% 楽に走れた</b></div>
+<div style="height: 8px; border-radius: 999px; background: #DCEAF7; overflow: hidden"><div style="width: 42%; height: 100%; background: #2563EB"></div></div>
+</div>
+<div style="font-size: 13px; line-height: 1.7; color: #2E3A34; background: #F3F5F4; border-radius: 10px; padding: 10px 12px">無風の日と比べると、全体で<b>約6%</b>多く体力を使っています。次は向かい風を往路にするルートがおすすめです。</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="margin: 0; font-size: 15px; font-weight: 700">いちばんの登り</div>
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="font-size: 13px; color: #56635C">2.1km・平均勾配5%・9分40秒</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700">185<span style="font-size: 12px">W</span></div>
+</div>
+<div style="font-size: 12px; color: #56635C">登りは重力が主役なので、平地より推定の精度が高い区間です。</div>
+</div>
+
+<div style="font-size: 11px; line-height: 1.6; color: #56635C; padding: 0 4px">推定値はパワーメーターの実測とは異なります。体重や自転車の重さは<span>プロフィール</span>で変更できます。</div>
+</div>
+</div></div>
           </div>
         </div>
       </div>
@@ -223,10 +431,10 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
       <div class="feature">
         <div>
           <h3>月に1回で、じゅうぶん</h3>
-          <p>続けた記録は「月に1回乗れたらOK」。忙しい月があっても、責められることはありません。キツいと思った瞬間、自転車は遠くなるから。</p>
+          <p>続けた記録は「月に1回乗れたらOK」。忙しい月があっても責められることはありません。キツいと思った瞬間、自転車は遠くなるから。</p>
         </div>
-        <div class="feature__visual" aria-hidden="true">
-          <div class="frag">
+        <div class="feature__media" aria-hidden="true">
+          <div class="months-card">
             <div class="big">5か月<span style="font-size:18px">つづいてる</span></div>
             <div class="months"><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>10月</span><span class="off">11月</span></div>
           </div>
@@ -239,15 +447,102 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
     <div class="wrap">
       <div>
         <h2 id="goal" class="section-title">もっと走りたくなったら</h2>
-        <p>「初めての100km」や「イベント完走」を目指すこともできます。週に1回のライドを、無理のない幅で少しずつ。雨の週は予備日に振り替えて、計画は崩れません。</p>
+        <p>「初めての100km」や「ロングライドイベントの完走」を目指すこともできます。メインのライドは週に1回だけ。距離を無理のない幅で少しずつ延ばします。雨の予報が出たら、予備日に移すのもワンタップです。</p>
       </div>
-      <div class="goal__steps" aria-hidden="true">
-        <span style="height:40%"><em>45</em></span>
-        <span style="height:52%"><em>55</em></span>
-        <span style="height:62%"><em>65</em></span>
-        <span style="height:74%"><em>75</em></span>
-        <span style="height:86%"><em>85</em></span>
-        <span style="height:100%;background:#FFFFFF"><em>100km</em></span>
+      <div class="goal__phone">
+        <div class="phone" role="img" aria-label="目標モードのホーム画面。土曜のメインライド50kmと、雨の予報で日曜に移す提案が表示されている">
+          <div class="screen" inert aria-hidden="true"><div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F3F5F4; font-family: 'Noto Sans JP', sans-serif; color: #15201B; box-sizing: border-box">
+<div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; justify-content: space-between; align-items: flex-end">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 13px; color: #56635C">10月2日（金）</div>
+<div style="margin: 0; font-family: 'Zen Maru Gothic', sans-serif; font-size: 26px; font-weight: 700">次のライド</div>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px; background: #FDEBDD; color: #8A3B0E; font-size: 13px; font-weight: 700">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c1 4 5 6 5 11a5 5 0 0 1-10 0c0-3 2-4 2-7 2 1 3 2 3 4"/></svg>
+8週連続
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<div style="font-size: 13px; font-weight: 700; color: #1F7A4D">10月3日（土）メインライド</div>
+<div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 30px; font-weight: 700">50<span style="font-size: 16px; margin-left: 4px">km</span></div>
+</div>
+<div style="font-size: 13px; color: #56635C">目安 2時間〜2時間半</div>
+</div>
+<div style="font-size: 14px; line-height: 1.6; color: #2E3A34">先週より5kmだけ長く。途中で一度休憩をとって、補給食を持っていきましょう。</div>
+<span style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: 14px; background: #1F7A4D; color: #FFFFFF; text-decoration: none; font-size: 16px; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>記録をはじめる</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #FFF4E8">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9A4A12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15a4 4 0 0 1 .5-8 5 5 0 0 1 9.5 1.5A3.5 3.5 0 0 1 17 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg>
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 12px; font-weight: 700; color: #7A3A0E">土 午後から雨</span>
+<span style="font-size: 11px; color: #7A3A0E">降水60%・北風4m</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: #EEF7F1">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#165C3A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+<div style="display: flex; flex-direction: column">
+<span style="font-size: 12px; font-weight: 700; color: #165C3A">日 晴れ 24°</span>
+<span style="font-size: 11px; color: #165C3A">降水10%・風弱い</span>
+</div>
+</div>
+</div>
+</div>
+
+<div style="background: #15201B; color: #FFFFFF; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 14px; line-height: 1.7">土曜の午後は雨の予報です。<b>日曜（予備日）</b>に移すか、土曜の午前中に走り終えるのがおすすめです。</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<button type="button" style="min-height: 44px; border-radius: 12px; border: 1px solid #4A5952; background: transparent; color: #FFFFFF; font-family: inherit; font-size: 13px; cursor: pointer">土曜の午前に走る</button>
+<button type="button" style="min-height: 44px; border-radius: 12px; border: none; background: #6FD39C; color: #0E2A1B; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer">日曜に移す</button>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<span style="font-size: 14px; font-weight: 700">目標：初めての100km</span>
+<span style="font-size: 12px; color: #56635C">11月23日まで・残り7週</span>
+</div>
+<div style="height: 8px; border-radius: 999px; background: #E3E8E5; overflow: hidden">
+<div style="width: 45%; height: 100%; background: #1F7A4D"></div>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #56635C">
+<span>これまでの最長 45km</span>
+<span>今週は1回乗れば継続達成</span>
+</div>
+</div>
+</div>
+
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 84px; background: #FFFFFF; border-top: 1px solid #DDE2DF; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); padding-bottom: 22px; box-sizing: border-box">
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #1F7A4D; font-size: 11px; font-weight: 700"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>ホーム</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>計画</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V11M10 20V5M16 20v-6M2 20h20"/></svg>レビュー</span>
+<span style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; text-decoration: none; color: #56635C; font-size: 11px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>相談</span>
+</div>
+</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beginners" aria-labelledby="beginners">
+    <div class="wrap">
+      <h2 id="beginners" class="section-title">自転車をはじめたばかりの人へ</h2>
+      <div class="cols">
+        <div>
+          <h3>どれくらい走ればいい？</h3>
+          <p>決まりはありません。まずは近所を30分、景色のいい川沿いや公園まで。ぽたりんは、走った距離より「走った日」を大切にします。</p>
+        </div>
+        <div>
+          <h3>どんな自転車でも</h3>
+          <p>ロードバイク、クロスバイク、ふだん使いの自転車、E-bike。どれでも使えます。体重や自転車の種類を入れると、推定パワーの精度が上がります。</p>
+        </div>
+        <div>
+          <h3>天気と風を味方に</h3>
+          <p>自転車がつらくなる一番の理由は、雨と向かい風。ぽたりんは週末の予報を見て、気持ちよく走れそうな日と時間帯をお知らせします。</p>
+        </div>
       </div>
     </div>
   </section>
@@ -262,7 +557,7 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
     </div>
   </section>
 
-  <section class="beta" id="beta" aria-labelledby="beta-title">
+  <section id="beta" aria-labelledby="beta-title">
     <div class="wrap">
       <div class="beta__box">
         <div>
@@ -281,7 +576,7 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
       <details><summary>Androidで使えますか？</summary><p>いまはiPhoneのみです。</p></details>
       <details><summary>パワーメーターやセンサーは必要ですか？</summary><p>いりません。iPhoneだけで記録できます。推定パワーは、GPS・地形・風・体重などから計算した目安です。</p></details>
       <details><summary>ストラバやApple Watchの記録は使えますか？</summary><p>ヘルスケアに保存されたサイクリングの記録を取り込めます。</p></details>
-      <details><summary>位置情報や記録はどこに保存されますか？</summary><p>アカウント登録はなく、記録はiPhoneの中に保存されます。くわしくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p></details>
+      <details><summary>位置情報や記録はどこに保存されますか？</summary><p>アカウント登録はなく、記録はiPhoneの中に保存されます。くわしくは<a href="/privacy">プライバシーポリシー</a>をご覧ください。</p></details>
     </div>
   </section>
 </main>
@@ -290,8 +585,8 @@ footer a:hover{text-decoration:underline;color:#FFFFFF}
   <div class="wrap">
     <span>© 2026 ぽたりん</span>
     <nav aria-label="フッター">
-      <a href="support.html">サポート</a>
-      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="/support">サポート</a>
+      <a href="/privacy">プライバシーポリシー</a>
     </nav>
   </div>
 </footer>
