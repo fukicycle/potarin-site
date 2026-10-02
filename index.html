@@ -119,6 +119,35 @@ section{padding:104px 0}
 .months span{aspect-ratio:1;border-radius:10px;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
 .months span.off{background:#E3E8E5;color:var(--ink-soft)}
 
+
+/* buddy：相棒のぽたりん（風の子） */
+.buddy{background:#EAF5FC}
+.buddy .wrap{display:grid;grid-template-columns:auto 1fr;gap:64px;align-items:center}
+.buddy__figure{position:relative;width:260px;height:260px;border-radius:50%;background:var(--white);display:flex;align-items:center;justify-content:center}
+.buddy__figure svg{width:210px;height:210px}
+.buddy__wind{position:absolute;left:-36px;top:96px;width:80px;height:60px;fill:none;stroke:#7CBCE6;stroke-width:5;stroke-linecap:round}
+@media (prefers-reduced-motion: no-preference){
+  .buddy__figure svg{animation:drift 5s ease-in-out infinite}
+  @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(6px,-8px)}}
+}
+.eyebrow{font-size:14px;font-weight:700;letter-spacing:.08em;color:#2F7DB3}
+.buddy h2{margin-top:8px;font-size:clamp(2rem,5vw,3rem)}
+.buddy__text{margin-top:16px;max-width:34rem;color:var(--ink-soft)}
+.moods{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;padding:0;list-style:none}
+.moods li{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft)}
+.moods svg{width:76px;height:76px;background:var(--white);border-radius:20px}
+.says{display:grid;gap:12px;margin-top:28px;max-width:34rem}
+.say{display:flex;align-items:flex-end;gap:10px}
+.say svg{flex-shrink:0;width:44px;height:44px}
+.say p{background:var(--white);padding:12px 16px;border-radius:16px 16px 16px 4px;font-size:15px;line-height:1.75}
+.say small{display:block;font-size:12px;color:var(--ink-soft);margin-bottom:2px}
+@media (max-width:860px){
+  .buddy .wrap{grid-template-columns:1fr;gap:36px;justify-items:center}
+  .buddy__figure{width:200px;height:200px}
+  .buddy__figure svg{width:160px;height:160px}
+  .buddy__body{width:100%}
+}
+
 /* goal */
 .goal{background:var(--green);color:var(--white)}
 .goal .wrap{display:grid;grid-template-columns:1fr auto;gap:72px;align-items:center}
@@ -203,12 +232,12 @@ section{padding:104px 0}
         </div>
       </div>
       <div class="hero__phone">
-        <div class="phone" role="img" aria-label="ぽたりんのホーム画面。今週末は土曜が気持ちよさそうと知らせている">
+        <div class="phone" role="img" aria-label="ぽたりんのホーム画面。風の子のぽたりんが、今週末は土曜が気持ちよく走れそうと知らせている">
           <div class="screen" inert aria-hidden="true"><div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F3F5F4; font-family: 'Noto Sans JP', sans-serif; color: #15201B; box-sizing: border-box">
 <div style="padding: 56px 20px 0; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: flex-end; gap: 12px">
-<svg width="64" height="64" viewBox="0 0 240 240" aria-hidden="true" style="flex-shrink: 0"><circle cx="120" cy="120" r="120" fill="#DCEFFF"/><rect x="62" y="168" width="116" height="18" rx="9" fill="#E0A100"/><path d="M70 168 C70 100 92 70 120 70 C148 70 170 100 170 168 Z" fill="#FFC83D"/><circle cx="120" cy="60" r="12" fill="#FFC83D"/><circle cx="102" cy="126" r="9" fill="#5A3A00"/><circle cx="138" cy="126" r="9" fill="#5A3A00"/><path d="M110 144 C114 152 126 152 130 144" fill="none" stroke="#5A3A00" stroke-width="7" stroke-linecap="round"/><circle cx="88" cy="144" r="9" fill="#FF8A8A" opacity="0.55"/><circle cx="152" cy="144" r="9" fill="#FF8A8A" opacity="0.55"/></svg>
-<div style="position: relative; flex-grow: 1; padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: #FFFFFF; font-size: 15px; line-height: 1.6">ちりりん！今週末は<b>土曜</b>が気持ちよさそうだよ。</div>
+<svg width="64" height="64" viewBox="0 0 120 120" aria-hidden="true" style="flex-shrink: 0"><circle cx="60" cy="60" r="60" fill="#DDEFFA"/><g transform="translate(9 6) scale(0.85)"><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><circle cx="52" cy="66" r="4.2" fill="#2B2A24"/><circle cx="76" cy="66" r="4.2" fill="#2B2A24"/><path d="M58 76 Q64 82 70 76" fill="none" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></g></svg>
+<div style="position: relative; flex-grow: 1; padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: #FFFFFF; font-size: 15px; line-height: 1.6">いい風ですね。今週末は<b>土曜</b>が気持ちよく走れそうです。</div>
 </div>
 
 <div style="background: #FFFFFF; border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px">
@@ -240,7 +269,7 @@ section{padding:104px 0}
 <div style="font-size: 11px; color: #56635C">月2〜3回が目安</div>
 </div>
 <div style="background: #FDEBDD; border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 2px">
-<div style="font-size: 12px; color: #8A3B0E">つづいてる</div>
+<div style="font-size: 12px; color: #8A3B0E">連続記録</div>
 <div style="font-family: 'Zen Maru Gothic', sans-serif; font-size: 24px; font-weight: 700; color: #8A3B0E">5<span style="font-size: 12px">か月</span></div>
 <div style="font-size: 11px; color: #8A3B0E">月1回乗ればOK</div>
 </div>
@@ -270,6 +299,24 @@ section{padding:104px 0}
 </header>
 
 <main>
+  <section class="buddy" aria-labelledby="buddy">
+    <div class="wrap">
+      <div class="buddy__figure" aria-hidden="true">
+        <svg width="210" height="210" viewBox="0 0 120 120" aria-hidden="true"><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><circle cx="52" cy="66" r="4.2" fill="#2B2A24"/><circle cx="76" cy="66" r="4.2" fill="#2B2A24"/><path d="M58 76 Q64 82 70 76" fill="none" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></svg>
+      </div>
+      <div class="buddy__body">
+        <p class="eyebrow">相棒のぽたりん</p>
+        <h2 id="buddy">いい風ですね。</h2>
+        <p class="buddy__text">ぽたりんは、自転車で受ける風の精。気持ちよく走れそうな日を見つけたら知らせてくれて、走ったあとは一緒にふりかえります。あいさつは「いい風ですね」。雨の日は、風もひと休みです。</p>
+        <ul class="moods" aria-label="ぽたりんの表情"><li><svg width="76" height="76" viewBox="0 0 120 120" aria-hidden="true"><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><circle cx="52" cy="66" r="4.2" fill="#2B2A24"/><circle cx="76" cy="66" r="4.2" fill="#2B2A24"/><path d="M58 76 Q64 82 70 76" fill="none" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></svg>ふだん</li><li><svg width="76" height="76" viewBox="0 0 120 120" aria-hidden="true"><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><path d="M47 67 Q52 61 57 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M71 67 Q76 61 81 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M58 76 Q64 82 70 76" fill="none" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></svg>ほめるとき</li><li><svg width="76" height="76" viewBox="0 0 120 120" aria-hidden="true"><g fill="#7FB3D9"><path d="M14 30 Q18 22 22 30 A4 4 0 0 1 14 30 Z"/><path d="M100 18 Q104 10 108 18 A4 4 0 0 1 100 18 Z"/><path d="M106 44 Q109 38 112 44 A3 3 0 0 1 106 44 Z"/></g><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><circle cx="52" cy="66" r="4.2" fill="#2B2A24"/><circle cx="76" cy="66" r="4.2" fill="#2B2A24"/><path d="M59 78 L69 78" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></svg>雨の日</li><li><svg width="76" height="76" viewBox="0 0 120 120" aria-hidden="true"><g stroke="#7CBCE6" stroke-width="3" stroke-linecap="round"><path d="M16 22 L16 34"/><path d="M10 28 L22 28"/><path d="M104 14 L104 24"/><path d="M99 19 L109 19"/></g><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><path d="M47 67 Q52 61 57 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M71 67 Q76 61 81 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M57 75 Q64 84 71 75 Z" fill="#2B2A24"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></svg>目標達成</li></ul>
+        <div class="says">
+          <div class="say"><svg width="44" height="44" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#DDEFFA"/><g transform="translate(9 6) scale(0.85)"><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><path d="M47 67 Q52 61 57 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M71 67 Q76 61 81 67" fill="none" stroke="#2B2A24" stroke-width="3" stroke-linecap="round"/><path d="M58 76 Q64 82 70 76" fill="none" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></g></svg><p><small>走った週</small>いい風ですね。今週は42km走りました。先週より距離が伸びています。</p></div>
+          <div class="say"><svg width="44" height="44" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="60" fill="#DDEFFA"/><g transform="translate(9 6) scale(0.85)"><g fill="#7FB3D9"><path d="M14 30 Q18 22 22 30 A4 4 0 0 1 14 30 Z"/><path d="M100 18 Q104 10 108 18 A4 4 0 0 1 100 18 Z"/><path d="M106 44 Q109 38 112 44 A3 3 0 0 1 106 44 Z"/></g><g stroke="#7CBCE6" stroke-width="5" stroke-linecap="round" opacity="0.85"><path d="M2 66 L14 66"/><path d="M0 82 L16 82"/></g><circle cx="42" cy="70" r="26" fill="#7CBCE6"/><circle cx="64" cy="56" r="31" fill="#7CBCE6"/><circle cx="86" cy="70" r="24" fill="#7CBCE6"/><rect x="20" y="66" width="86" height="30" rx="15" fill="#7CBCE6"/><circle cx="42" cy="70" r="22" fill="#FFFFFF"/><circle cx="64" cy="56" r="27" fill="#FFFFFF"/><circle cx="86" cy="70" r="20" fill="#FFFFFF"/><rect x="24" y="70" width="78" height="22" rx="11" fill="#FFFFFF"/><circle cx="52" cy="66" r="4.2" fill="#2B2A24"/><circle cx="76" cy="66" r="4.2" fill="#2B2A24"/><path d="M59 78 L69 78" stroke="#2B2A24" stroke-width="2.6" stroke-linecap="round"/><ellipse cx="44" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><ellipse cx="84" cy="75" rx="6" ry="3.6" fill="#F2A08C" opacity="0.55"/><path d="M100 40 C108 38 112 32 108 26" fill="none" stroke="#7CBCE6" stroke-width="4" stroke-linecap="round" opacity="0.8"/></g></svg><p><small>雨で走れなかった週</small>今週は風もひと休みでした。だれのせいでもありません。晴れたら、またお誘いします。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section aria-labelledby="what">
     <div class="wrap">
       <h2 id="what" class="section-title">速さより、気持ちよさ。</h2>
@@ -449,7 +496,7 @@ section{padding:104px 0}
         </div>
         <div class="feature__media" aria-hidden="true">
           <div class="months-card">
-            <div class="big">5か月<span style="font-size:18px">つづいてる</span></div>
+            <div class="big">5か月<span style="font-size:18px">連続</span></div>
             <div class="months"><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>10月</span><span class="off">11月</span></div>
           </div>
         </div>
