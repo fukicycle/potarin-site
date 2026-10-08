@@ -118,6 +118,12 @@ section{padding:104px 0}
 .months{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-top:16px}
 .months span{aspect-ratio:1;border-radius:10px;background:var(--green);color:var(--white);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
 .months span.off{background:#E3E8E5;color:var(--ink-soft)}
+.battery-card{width:300px;max-width:100%;background:var(--white);border-radius:24px;padding:24px;align-self:center}
+.battery-card .label{font-size:13px;font-weight:700;color:var(--ink-soft)}
+.battery-card .big{font-family:'Zen Maru Gothic',sans-serif;font-size:42px;font-weight:700;line-height:1.2}
+.battery-meter{position:relative;height:14px;border-radius:999px;background:#E3E8E5;margin-top:14px;overflow:hidden}
+.battery-meter span{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--green)}
+.battery-card .note{margin-top:12px;font-size:14px;color:var(--ink)}
 
 
 /* buddy：相棒のぽたりん（風の子） */
@@ -305,6 +311,26 @@ section{padding:104px 0}
           </div>
         </div>
       </div>
+
+      <div class="feature feature--flip">
+        <div>
+          <h3>電池の心配を、先に</h3>
+          <p>走りに行く前に、今の電池であと何時間記録できそうかをお知らせします。目標の距離がある日は、その距離に電池が足りるかどうかも。あなたのiPhoneで実際に記録したときの電池の減り方を覚えていくので、使うほど見通しが正確になります。</p>
+          <ul>
+            <li>帰りの連絡や地図のために、10%を残して計算</li>
+            <li>足りなさそうな日は、出かける前に充電をおすすめ</li>
+            <li>走っている途中で電池が少なくなったら、記録を続けたまま長持ちさせる</li>
+          </ul>
+        </div>
+        <div class="feature__media" aria-hidden="true">
+          <div class="battery-card">
+            <div class="label">今の電池で記録できそう</div>
+            <div class="big">約6時間</div>
+            <div class="battery-meter"><span style="width:64%"></span></div>
+            <p class="note">60kmなら約3時間50分かかりそうです。今の電池で足りそうです。</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -371,6 +397,7 @@ section{padding:104px 0}
       <details><summary>何歳から使えますか？</summary><p>18歳以上の方が対象です。走るかどうか、どこを走るかの判断はご自身にお任せしています。くわしくは<a href="/terms">利用規約</a>をご覧ください。</p></details>
       <details><summary>Androidで使えますか？</summary><p>いまはiPhoneのみです。</p></details>
       <details><summary>パワーメーターやセンサーは必要ですか？</summary><p>いりません。iPhoneだけで記録できます。推定パワーは、GPS・地形・風・体重などから計算した目安です。</p></details>
+      <details><summary>長く走っても、iPhoneの電池はもちますか？</summary><p>記録をはじめる前に、今の電池で何時間くらい記録できそうかをお知らせします。はじめは目安で計算し、記録するたびに、あなたのiPhoneでの実際の電池の減り方に合わせて正確になります。画面を消しても記録は続くので、長いライドではポケットにしまっておくのもおすすめです。</p></details>
       <details><summary>ストラバやApple Watchの記録は使えますか？</summary><p>ヘルスケアに保存されたサイクリングの記録を取り込めます。</p></details>
       <details><summary>位置情報や記録はどこに保存されますか？</summary><p>アカウント登録はなく、記録はiPhoneの中に保存されます。くわしくは<a href="/privacy">プライバシーポリシー</a>をご覧ください。</p></details>
     </div>
